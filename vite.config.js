@@ -3,5 +3,5 @@ export default {
   build: {
     target: 'esnext',
   },
-  root: 'dist',
+  root: './',
 }
