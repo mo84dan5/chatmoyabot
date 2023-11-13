@@ -3,5 +3,5 @@ export default {
   build: {
     target: 'esnext',
   },
-  root: './dist/',
+  base: 'https://mo84dan5.github.io/chatmoyabot/dist/',
 }
