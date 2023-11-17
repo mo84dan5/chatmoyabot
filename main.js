@@ -14,7 +14,7 @@ import {
   requestGyroscopePermission,
 } from './src/requestPermission.js'
 
-const recorder = new AudioRecorder('src')
+// const recorder = new AudioRecorder('src')
 document.querySelector('#app').innerHTML = `
   <div>
     <div id="myModal" class="modal">
