@@ -59,10 +59,10 @@ const api_key = getCurrentPageQueryParams().key
 //   .catch((error) => console.error(error))
 // setupCounter(document.querySelector('#counter'))
 
-const _txt = await fetchText('./prompts/template.txt')
+const _txt = await fetchText('./public/prompts/template.txt')
 console.log(_txt)
 
-const _json = await fetchJson('./prompts/character.json')
+const _json = await fetchJson('./public/prompts/character.json')
 console.log(_json)
 document.querySelector('#counter').addEventListener('click', function () {
   textToSpeech(api_key, document.getElementById('messageInput').value, 'onyx')
