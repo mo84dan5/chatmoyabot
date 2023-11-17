@@ -12,7 +12,7 @@
       <button id="counter" type="button">push</button>
     </div>
     <div class="card">
-      <button class="recordButton">record</button>
+      <button id="recordButton">record</button>
     </div>
     <p class="read-the-docs">
       Click on the Vite logo to learn more
