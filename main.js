@@ -8,9 +8,22 @@ import { fetchJson, fetchText } from './src/util.js'
 import { getCurrentPageQueryParams } from './src/parseQueryParams.js'
 import { sendRequestToGPT } from './src/GPTRequestSender.js'
 import { textToSpeech } from './src/textToSpeech.js'
+import { AudioRecorder } from './src/getMp3Blob'
+import {
+  requestCameraAndMicrophonePermission,
+  requestGyroscopePermission,
+} from './src/requestPermission.js'
 
+const recorder = new AudioRecorder('src')
 document.querySelector('#app').innerHTML = `
   <div>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>カメラとマイクのアクセス許可を要求しますか？</p>
+        <button id="confirmBtn">OK</button>
+      </div>
+    </div>
     <a href="https://vitejs.dev" target="_blank">
       <img src="${viteLogo}" class="logo" alt="Vite logo" />
     </a>
@@ -32,6 +45,40 @@ document.querySelector('#app').innerHTML = `
 `
 console.log(getCurrentPageQueryParams())
 const api_key = getCurrentPageQueryParams().key
+
+// モーダル画面ロジック
+
+// モーダルを制御する関数
+function showModal() {
+  var modal = document.getElementById('myModal')
+  var btn = document.getElementById('confirmBtn')
+  var span = document.getElementsByClassName('close')[0]
+
+  modal.style.display = 'block'
+
+  // 「OK」ボタンをクリックしたとき
+  btn.onclick = function () {
+    modal.style.display = 'none'
+    requestCameraAndMicrophonePermission()
+  }
+
+  // × ボタンをクリックしたとき
+  span.onclick = function () {
+    modal.style.display = 'none'
+  }
+
+  // モーダル外をクリックしたとき
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = 'none'
+    }
+  }
+}
+
+// ページが読み込まれたときにモーダルを表示
+window.onload = function () {
+  showModal()
+}
 
 // sendRequestToGPT(
 //   api_key, // APIキー
