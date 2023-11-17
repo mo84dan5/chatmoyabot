@@ -8,10 +8,11 @@
     </a>
     <h1>Hello Vite!</h1>
     <div class="card">
+      <input type="text" id="messageInput" value="私はクワガタ型メダロットのロクショウです。">
       <button id="counter" type="button">push</button>
     </div>
     <p class="read-the-docs">
       Click on the Vite logo to learn more
     </p>
   </div>
-`;console.log(i());const f=i().key,g=await p("./prompts/template.txt");console.log(g);const m=await d("./prompts/character.json");console.log(m);document.querySelector("#counter").addEventListener("click",function(){h(f,"私はクワガタ型メダロットのロクショウです。","onyx").then(r=>{r?new Audio(r).play():console.error("Failed to get speech URL")}).catch(r=>console.error(r))});
+`;console.log(i());const f=i().key,g=await p("./prompts/template.txt");console.log(g);const m=await d("./prompts/character.json");console.log(m);document.querySelector("#counter").addEventListener("click",function(){h(f,document.getElementById("messageInput").value,"onyx").then(r=>{r?new Audio(r).play():console.error("Failed to get speech URL")}).catch(r=>console.error(r))});
