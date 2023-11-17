@@ -19,6 +19,7 @@ document.querySelector('#app').innerHTML = `
     </a>
     <h1>Hello Vite!</h1>
     <div class="card">
+      <input type="text" id="messageInput" value="私はクワガタ型メダロットのロクショウです。">
       <button id="counter" type="button">push</button>
     </div>
     <p class="read-the-docs">
@@ -61,7 +62,7 @@ console.log(_txt)
 const _json = await fetchJson('./prompts/character.json')
 console.log(_json)
 document.querySelector('#counter').addEventListener('click', function () {
-  textToSpeech(api_key, '私はクワガタ型メダロットのロクショウです。', 'onyx')
+  textToSpeech(api_key, document.getElementById('messageInput').value, 'onyx')
     .then((mp3Url) => {
       if (mp3Url) {
         // Audioオブジェクトを作成し、音声を再生
