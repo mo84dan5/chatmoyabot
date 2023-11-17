@@ -22,6 +22,9 @@ document.querySelector('#app').innerHTML = `
       <input type="text" id="messageInput" value="私はクワガタ型メダロットのロクショウです。">
       <button id="counter" type="button">push</button>
     </div>
+    <div class="card">
+      <button class="recordButton">record</button>
+    </div>
     <p class="read-the-docs">
       Click on the Vite logo to learn more
     </p>
@@ -73,4 +76,39 @@ document.querySelector('#counter').addEventListener('click', function () {
       }
     })
     .catch((error) => console.error(error))
+})
+
+// ボタン要素を取得
+const recordButton = document.getElementById('recordButton')
+
+// レコーディングの状態を追跡する変数
+let isRecording = false
+
+// 録音開始のメソッド
+function recordStart() {
+  // 録音開始の処理
+  console.log('録音が開始されました。')
+}
+
+// 録音停止の非同期関数
+async function recordStop() {
+  // 録音停止の処理、blobを返す
+  console.log('録音が停止しました。')
+  return new Blob() // 仮の返り値
+}
+
+// ボタンのクリックイベントハンドラ
+recordButton.addEventListener('click', async () => {
+  if (!isRecording) {
+    recordStart()
+    recordButton.classList.add('recording')
+    isRecording = true
+  } else {
+    const mp3Blob = await recordStop()
+    recordButton.classList.remove('recording')
+    isRecording = false
+
+    // mp3Blobを処理するロジック
+    console.log('録音データ:', mp3Blob)
+  }
 })
