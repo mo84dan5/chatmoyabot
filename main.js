@@ -14,7 +14,6 @@ import {
   requestGyroscopePermission,
 } from './src/requestPermission.js'
 
-// const recorder = new AudioRecorder('src')
 document.querySelector('#app').innerHTML = `
   <div>
     <div id="myModal" class="modal">
@@ -48,6 +47,8 @@ const api_key = getCurrentPageQueryParams().key
 
 // モーダル画面ロジック
 
+let stream = undefined
+let recorder = undefined
 // モーダルを制御する関数
 function showModal() {
   var modal = document.getElementById('myModal')
@@ -59,7 +60,8 @@ function showModal() {
   // 「OK」ボタンをクリックしたとき
   btn.onclick = function () {
     modal.style.display = 'none'
-    requestCameraAndMicrophonePermission()
+    stream = requestCameraAndMicrophonePermission()
+    recorder = new AudioRecorder(stream)
   }
 
   // × ボタンをクリックしたとき

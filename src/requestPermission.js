@@ -8,6 +8,7 @@ async function requestCameraAndMicrophonePermission() {
     })
     // ここでストリームを使用します (例: video要素に割り当てる)
     console.log('カメラとマイクのアクセス許可が与えられました。', stream)
+    return stream
   } catch (error) {
     // ユーザーがアクセスを拒否した場合のエラーハンドリング
     console.error('カメラとマイクのアクセス許可が拒否されました。', error)
